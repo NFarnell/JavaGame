@@ -3,7 +3,7 @@ import java.util.ArrayList;
 class Inventory {
 	
 	public static int checkItem(int x, int y, String item,
-            ArrayList<String> inventory, Room[][] room, int score) {
+            ArrayList<String> inventory, Area[][] room, int score) {
 		
 		
 		boolean validRoomItem = false;
@@ -29,7 +29,7 @@ class Inventory {
 			System.out.println("You pick up the " + item + ".");          //If item is picked up print this
 			inventory.add(item);
 			score += 10;
-			Rooms.removeItem(room, x, y, item);
+			Areas.removeItem(room, x, y, item);
 		}
 		else if (inInventory) {
 			System.out.println("You already have the " + item + ".");      //If item is already in inventory print this
@@ -38,7 +38,7 @@ class Inventory {
 			System.out.println("You don't see that here.");           //If item doesn't exist print this
 		}
 		else {
-			System.out.println("I don't understand.");              //Incorrect command
+			System.out.println("Cannot do this");              //Incorrect command
 		}
 		
 		return score;

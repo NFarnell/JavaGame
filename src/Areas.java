@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
-class Rooms {
+class Areas {
 
-    public static void build(Room[][] room, final int WIDTH, final int HEIGHT) {
+    public static void build(Area[][] room, final int WIDTH, final int HEIGHT) {
 
     	
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
-                room[i][j] = new Room(i, "", "", null);    //Room creation
+                room[i][j] = new Area(i, "", "", null);    //Room creation
             }
         }
 
         room[0][0].setNumber(1);
         room[0][0].setName("Forest");
-        room[0][0].setDescription("You are lost in a forest!");
+        room[0][0].setDescription("You are lost in a forest" );
         room[0][0].setInstruction("Which direction will you travel?");
         room[0][0].setItems("Sword");
         room[0][0].setItems("Potion");
@@ -35,6 +35,7 @@ class Rooms {
         room[1][1].setNumber(4);
         room[1][1].setName("Throne Room");
         room[1][1].setDescription("The skeleton king appears!");
+        room[1][1].setDialogue("You will not steal my treasure! THIEF!");
         room[1][1].setInstruction("Which direction will you travel?");
         room[1][1].setItems("Rope");
         room[1][1].setItems("Poison");
@@ -46,7 +47,7 @@ class Rooms {
         room[2][0].setItems("Rope");
         room[2][0].setItems("Poison");
         
-        room[2][1].setNumber(5);
+        room[2][1].setNumber(6);
         room[2][1].setName("Treasure Room");
         room[2][1].setDescription("The skeleton kings treasure");
         room[2][1].setInstruction("Which direction will you travel?");
@@ -57,30 +58,34 @@ class Rooms {
         
     }
 
-    public static void print(Room[][] room, int x, int y) {
+    public static void print(Area[][] room, int x, int y) {
 
     	System.out.println();
+    	
         System.out.println(room[x][y].getDescription());
+        System.out.println(room[x][y].getDialogue());
         System.out.println(room[x][y].getInstruction());
         System.out.println("You see some items which may be of use " + room[x][y].getItems());
     }
 
     // Remove item from room when added to inventory
-    public static void removeItem(Room[][] room, int x, int y, String item) {
+    public static void removeItem(Area[][] room, int x, int y, String item) {
     	
     	room[x][y].deleteItem(item);
     }
 }
 
-class Room {
+class Area {
 
     private int number;
     private String name;
     private String description;
     private String instruction;
+    private String dialogue;
     public ArrayList<String> items = new ArrayList<>();
+	
 
-    public Room(int number, String name, String description,
+    public Area(int number, String name, String description,
             ArrayList<String> items) {
     }
 
@@ -99,6 +104,13 @@ class Room {
     public String getName() {
         return this.name;
     }
+    public void setDialogue(String dialogue) {
+        this.dialogue = dialogue;
+    }
+    
+    public String getDialogue() {
+        return this.dialogue;
+    }
 
     public void setDescription(String description) {
         this.description = description;
@@ -107,6 +119,7 @@ class Room {
     public String getDescription() {
         return this.description;
     }
+    
     
     public void setInstruction(String instruction) {
         this.instruction = instruction;
